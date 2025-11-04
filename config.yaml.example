@@ -1,0 +1,18 @@
+general:
+  max_concurrency: 20
+  default_timeout_seconds: 120
+  user_agent: "VulnEZ/1.0 (+https://github.com/yourusername/vulnez)"
+
+wordlists:
+  dir_fuzz: "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt"
+  quick_dir_fuzz: "/usr/share/seclists/Discovery/Web-Content/quickhits.txt"
+  subdomain_fuzz: "/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt"
+
+reports:
+  outdir: "reports"
+
+lookup:
+  vulners_api_key: ""
+
+database:
+  sqlite_path: "vulnez_results.db"
