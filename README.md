@@ -37,7 +37,7 @@ Quick start (Kali Linux)
    ./run.sh
    (atau `python3 vulnez.py`)
 
-Menu utama (ringkasan)
+Menu utama
 1) Quick Discovery Pipeline — subdomain → http probe → nuclei → masscan → nmap → report  
 2) Quick Web Scan — httpx → nuclei → report  
 3) Quick Port Scan — masscan → nmap → report  
