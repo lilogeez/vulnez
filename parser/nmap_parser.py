@@ -5,31 +5,21 @@ import json
 def parse_nmap_xml(xml_path):
     xml_path = Path(xml_path)
     if not xml_path.exists():
-        return {"error": "file not found"}
-    tree = ET.parse(str(xml_path))
-    root = tree.getroot()
-    res = []
+        return {"error":"file not found"}
+    tree = ET.parse(str(xml_path)); root = tree.getroot()
+    res=[]
     for host in root.findall("host"):
-        h = {"addresses": [], "ports": []}
+        h={"addresses":[],"ports":[]}
         for addr in host.findall("address"):
-            a = addr.get("addr")
-            if a:
-                h["addresses"].append(a)
-        os_elem = host.find("os")
-        if os_elem is not None:
-            h["os"] = [o.get("name") for o in os_elem.findall("osmatch")]
+            a = addr.get("addr"); 
+            if a: h["addresses"].append(a)
         ports = host.find("ports")
-        if ports is not None:
+        if ports:
             for p in ports.findall("port"):
-                portid = p.get("portid")
-                proto = p.get("protocol")
-                state_elem = p.find("state")
-                state = state_elem.get("state") if state_elem is not None else None
-                service = p.find("service")
-                svc = {}
-                if service is not None:
-                    svc = service.attrib
-                h["ports"].append({"port": portid, "protocol": proto, "state": state, "service": svc})
+                portid = p.get("portid"); proto = p.get("protocol")
+                state = p.find("state").get("state") if p.find("state") is not None else None
+                service = p.find("service"); svc = service.attrib if service is not None else {}
+                h["ports"].append({"port":portid,"protocol":proto,"state":state,"service":svc})
         res.append(h)
     return res
 
