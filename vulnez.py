@@ -22,7 +22,7 @@ VERSION = "1.0.0"
 
 # --- CONFIG ---
 # Masukkan API Key jika ada, jika tidak biarkan kosong (akan pakai manual logic)
-GEMINI_API_KEY = "AIzaSyCsyCDqGbotW0OCv7UkPBzFqvgBrwMGUNg"
+GEMINI_API_KEY = "YOUR API"
 
 # --- RISK DATABASE (NIST/OWASP MAPPING) ---
 PORT_KB = {
