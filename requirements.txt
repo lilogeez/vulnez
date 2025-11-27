@@ -1,0 +1,9 @@
+cat > requirements.txt <<'EOF'
+rich
+xhtml2pdf
+xmltodict
+requests
+psutil
+google-generativeai
+playwright
+EOF
