@@ -64,3 +64,8 @@ playwright install chromium
 source .venv/bin/activate
 
 sudo .venv/bin/python3 vulnez.py
+
+⚠️ Disclaimer
+This tool is for educational purposes and authorized security testing only. The developer is not responsible for any misuse or damage caused by this tool. Always obtain proper permission before scanning any target.
+
+Developed by lilogeez
