@@ -1,71 +1,49 @@
-# 🛡️ VulnEZ - Automated Pentest Framework
+# VulnEZ — Complete Final Release (Automated Pentest Framework)
 
-**VulnEZ** is a powerful, lightweight, and automated penetration testing suite designed for Red Teamers, Bug Hunters, and System Administrators. It automates the entire audit lifecycle—from reconnaissance to reporting—following **NIST SP 800-115** and **OWASP** standards.
+VulnEZ is a modular, local-first pentest & red-team orchestrator focused on stability, structured reporting (NIST SP 800-115 + OWASP), and extensibility. No external AI/APIs required.
 
----
+Highlights
+- Multi-tool orchestration with graceful fallback when tools are missing.
+- Presets: safe (default), fast, full, aggressive (consent-gated).
+- Structured standardized findings (.std.json) with CVSS-lite heuristics + OWASP mapping.
+- Offline CVE enrichment (use local NVD JSON), red-team safe wrappers, exporters (CSV/PDF).
+- Built-in consent/audit logging for aggressive operations.
+- Simple single-command CLI: python -m vulnez scan <target> --mode full
 
-## ✨ Key Features
+Quickstart
+1. Create branch (optional but recommended)
+   git checkout -b automated/mvp-final
 
-* 🔥 **9+ Integrated Tools:** Orchestrates Nmap, Nuclei, Subfinder, HTTPX, GAU, Wafw00f, WhatWeb, Nikto, and Feroxbuster in one seamless pipeline.
-* 📊 **Professional Reporting:** Generates high-quality PDF reports with Executive Summary, Risk Tables, and Raw Evidence appendices.
-* 🧠 **Smart Input Logic:** Automatically detects and handles Domains, URLs, and IPs to prevent tool crashes.
-* 📸 **Visual Recon:** Automated screenshot capture of targets using Playwright.
-* 🚀 **Anti-Crash Engine:** Intelligent timeout handling and fallback mechanisms (Manual Risk DB) if AI services are unavailable.
+2. Copy files into repo (overwrite as needed).
 
----
+3. Create virtualenv & install:
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install --upgrade pip
+   pip install -r requirements.txt
 
-## ⚙️ Prerequisites (Requirements)
+4. Copy config:
+   cp config.example.yaml config.yaml
+   (edit config.yaml if you want to enable/disable tools)
 
-Before installing, ensure your system has the following:
+5. Run smoke tests:
+   pytest -q
 
-* **Operating System:** Kali Linux (Recommended), Ubuntu 20.04+, or Debian.
-* **Python:** Version 3.10 or higher.
-* **Go:** Latest version (for Nuclei/Subfinder).
-* **Access:** Root/Sudo privileges (required for Nmap SYN scans).
+6. Detect tools:
+   python -m vulnez tools_list
 
----
+7. Run safe scan:
+   python -m vulnez scan example.com --mode safe
 
-## 🚀 Installation Guide
+8. Run full scan (longer, non-intrusive by default):
+   python -m vulnez scan example.com --mode full
 
-### 1. Install System Tools (Kali Linux/Debian)
-First, install the core engines required by VulnEZ:
+9. Aggressive scans require explicit typed consent:
+   python -m vulnez scan example.com --mode aggressive
+   Type "I HAVE AUTHORIZATION" when prompted.
 
-```bash
-sudo apt update
-sudo apt install -y nmap masscan nikto wafw00f sqlmap whatweb sslscan feroxbuster jq chromium-driver
-
-# Install Go if needed
-sudo apt install golang -y
-
-# Install Tools
-go install -v [github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest](https://github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest)
-go install -v [github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest](https://github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest)
-go install -v [github.com/projectdiscovery/httpx/cmd/httpx@latest](https://github.com/projectdiscovery/httpx/cmd/httpx@latest)
-go install -v [github.com/lc/gau/v2/cmd/gau@latest](https://github.com/lc/gau/v2/cmd/gau@latest)
-
-# Add Go binary path to your system
-export PATH=$PATH:$(go env GOPATH)/bin
-
-# Clone Repository
-git clone [https://github.com/lilogeez/VulnEZ.git](https://github.com/lilogeez/VulnEZ.git)
-cd VulnEZ
-
-# Create Virtual Environment (Recommended)
-python3 -m venv .venv
-source .venv/bin/activate
-
-# Install Python Dependencies
-pip install -r requirements.txt
-
-# Install Browser for Screenshots
-playwright install chromium
-
-# For Activate Evironment
-source .venv/bin/activate
-
-sudo .venv/bin/python3 vulnez.py
-
-⚠️ Disclaimer
-This tool is for educational purposes and authorized security testing only. The developer is not responsible for any misuse or damage caused by this tool. Always obtain proper permission before scanning any target.
-
-Developed by lilogeez
+Reporting outputs
+- reports/<target>_<timestamp>.json  (raw findings)
+- reports/<target>_<timestamp>.html  (human readable report)
+- reports/<target>_<timestamp>.std.json (standardized findings with severity & OWASP mapping)
+- reports/consent.log  (audit log of consent timestamps)
