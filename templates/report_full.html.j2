@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>VulnEZ Report - {{ findings.target }}</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; margin: 18px; color: #222; }
+    header { border-bottom: 1px solid #ddd; margin-bottom: 12px; }
+    h1 { font-size: 20px; }
+    .section { margin: 18px 0; }
+    .sev-Critical { color: #7a0b00; font-weight: bold; }
+    .sev-High { color: #c9302c; font-weight: bold; }
+    .sev-Medium { color: #f0ad4e; font-weight: bold; }
+    .sev-Low { color: #5cb85c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid #e6e6e6; padding: 8px; text-align: left; vertical-align: top; }
+    pre { background: #f8f8f8; padding: 8px; overflow: auto; max-height: 240px; }
+    .muted { color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VulnEZ Automated Pentest Report</h1>
+    <div class="muted">Generated: {{ generated_at }} | Target: {{ findings.target }}</div>
+  </header>
+  <!-- (body same as prior template) -->
+</body>
+</html>
