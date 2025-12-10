@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120">
+  <rect width="400" height="120" rx="12" fill="#0f1724"/>
+  <g transform="translate(18,14)">
+    <circle cx="48" cy="48" r="44" fill="#ff4d00"/>
+    <path d="M28 60c6-10 20-20 34-12" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M40 36c8 6 18 3 24-2" stroke="#071a52" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <text x="110" y="68" font-family="Inter, Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="700">VulnEZ</text>
+    <text x="110" y="92" font-family="Inter, Arial, sans-serif" font-size="12" fill="#a5b4fc">Automated Pentest Framework</text>
+  </g>
+</svg>
