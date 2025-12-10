@@ -1,9 +1,10 @@
-cat > requirements.txt <<'EOF'
-rich
-xhtml2pdf
-xmltodict
-requests
-psutil
-google-generativeai
-playwright
-EOF
+click==8.1.7
+aiohttp==3.8.4
+jinja2==3.1.2
+requests==2.31.0
+PyYAML==6.0
+tldextract==3.4.0
+python-whois==0.7.3
+pytest==7.4.0
+pyinstaller==5.13.0
+weasyprint==58.2
