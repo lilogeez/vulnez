@@ -1,0 +1,35 @@
+general:
+  output_dir: "reports"
+  concurrency: 8
+  request_timeout: 15
+  safe_mode_default: true
+  nvd_db_path: ""  # optional path to local NVD JSON file for CVE enrichment
+
+tools:
+  detect_all: true
+  enabled:
+    amass: true
+    subfinder: true
+    assetfinder: true
+    naabu: true
+    masscan: true
+    nmap: true
+    gobuster: true
+    ffuf: true
+    feroxbuster: true
+    nuclei: true
+    nikto: true
+    httpx: true
+    gau: true
+    waybackurls: true
+    whatweb: true
+    wafw00f: true
+    theharvester: true
+    sslyze: true
+    sqlmap: false
+
+presets:
+  safe: ["osint","http_probe"]
+  fast: ["osint","fast_discovery","http_probe"]
+  full: ["osint","discovery","web_recon","nuclei","nikto","wayback"]
+  aggressive: ["full","sqlmap","bruteforce","redteam"]
