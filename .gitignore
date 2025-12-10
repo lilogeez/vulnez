@@ -1,8 +1,12 @@
-```bash
-cat > .gitignore <<'EOF'
 __pycache__/
+dist/
+build/
+.vscode/
 .venv/
-results/
-*.key
-.DS_Store
-EOF
+*.pyc
+*.pyo
+*.pyd
+*.log
+reports/
+*.spec
+.env
