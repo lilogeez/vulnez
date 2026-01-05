@@ -1,0 +1,9 @@
+__pycache__/
+outputs/
+.vscode/
+.env
+*.pyc
+.venv/
+node_modules/
+.nuclei-templates/
+vulnez_findings.db
