@@ -1,0 +1,24 @@
+# Laporan VulnEZ — OWASP
+
+Dihasilkan: {{ generated_at }}
+
+Ringkasan temuan ({{ findings | length }})
+
+{% for f in findings %}
+## {{ loop.index }} — {{ f.name }}
+- Perintah: `{{ f.cmd | join(' ') if f.cmd else '' }}`
+- Waktu: {{ f.ts }}
+- Keluaran singkat:
+```
+{{ (f.stdout or f.stderr) | replace('```','`') | truncate(800, True, '...') }}
+```
+{% if f.parsed %}
+### Hasil parsir
+{% for p in f.parsed %}
+- Template: {{ p.template_id }} — {{ p.title }} ({{ p.severity }})
+  - Tags: {{ p.tags | join(', ') }}
+  - CWE: {{ p.cwe | join(', ') }}
+  - Pemetaan OWASP: {{ p.mapped_owasp | join(', ') }}
+{% endfor %}
+{% endif %}
+{% endfor %}
