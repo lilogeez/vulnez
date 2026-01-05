@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://vulnez:changeme@postgres:5432/vulnez
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=ubah_dengan_rahasia
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+
+  worker:
+    build: .
+    command: ["rq", "worker", "vulnez", "--url", "redis://redis:6379/0"]
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://vulnez:changeme@postgres:5432/vulnez
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=ubah_dengan_rahasia
+    volumes:
+      - .:/app
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: vulnez
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: vulnez
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
