@@ -1,0 +1,15 @@
+# Laporan VulnEZ — NIST (Ringkas)
+
+Dihasilkan: {{ generated_at }}
+
+## Executive Summary
+Temuan otomatis berikut perlu verifikasi manual.
+
+{% for f in findings %}
+### {{ loop.index }} — {{ f.name }}
+- Bukti:
+```
+{{ (f.stdout or f.stderr) | replace('```','`') | truncate(400, True, '...') }}
+```
+- Rekomendasi: Verifikasi dan tindakan sesuai pedoman.
+{% endfor %}
